@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medichetti Likith - Data Science Dashboard</title>
+    <!-- FontAwesome CDN for clean icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Chart.js for statistics chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="light">
+
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <a href="#" class="sidebar-logo">L.</a>
+            
+            <ul class="sidebar-menu">
+                <li class="sidebar-item active" data-tab="overview">
+                    <a href="#" data-tooltip="Home"><i class="fa-solid fa-house"></i></a>
+                </li>
+                <li class="sidebar-item" data-tab="skills">
+                    <a href="#" data-tooltip="Skills"><i class="fa-solid fa-code"></i></a>
+                </li>
+                <li class="sidebar-item" data-tab="education">
+                    <a href="#" data-tooltip="Education"><i class="fa-solid fa-graduation-cap"></i></a>
+                </li>
+                <li class="sidebar-item" data-tab="experience">
+                    <a href="#" data-tooltip="Experience"><i class="fa-solid fa-briefcase"></i></a>
+                </li>
+                <li class="sidebar-item" data-tab="certificates">
+                    <a href="#" data-tooltip="Certificates"><i class="fa-solid fa-award"></i></a>
+                </li>
+                <li class="sidebar-item" data-tab="contact">
+                    <a href="#" data-tooltip="Contact"><i class="fa-solid fa-envelope"></i></a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <button class="sidebar-action" id="sidebarThemeToggle" title="Toggle Theme">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="main-content">
+            
+            <!-- Dashboard Header -->
+            <header class="dashboard-header">
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" placeholder="Search tabs, skills, courses..." class="search-input" id="dashboardSearch">
+                </div>
+                
+                <div class="header-actions">
+                    <!-- Light / Dark Mode Toggle Slider -->
+                    <div class="theme-switch-wrapper">
+                        <label class="theme-switch" for="checkbox">
+                            <input type="checkbox" id="checkbox" />
+                            <div class="slider">
+                                <i class="fa-solid fa-sun"></i>
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Notification Button -->
+                    <div class="notification-btn" title="Notifications" id="notificationBtn">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="notification-badge"></span>
+                    </div>
+
+                    <!-- Profile Pill -->
+                    <div class="profile-pill" id="profilePill" data-tab="contact">
+                        <div class="profile-img-container">
+                            <img src="WhatsApp Image 2026-02-05 at 5.44.53 PM.jpeg" alt="Medichetti Likith">
+                        </div>
+                        <span>Medichetti Likith</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- ================= OVERVIEW TAB (HOME) ================= -->
+            <div id="overview" class="tab-content active">
+                <div class="overview-grid">
+                    
+                    <!-- Left Grid Column -->
+                    <div class="overview-left">
+                        <!-- Greeting Card -->
+                        <div class="card greeting-card">
+                            <div class="greeting-info">
+                                <h1 class="greeting-title">Hello Likith!</h1>
+                                <p class="greeting-subtitle">Welcome back. A Data Science student passionate about turning raw data into strategic, actionable business insights.</p>
+                            </div>
+                            <div class="greeting-avatar">
+                                <!-- Minimal Waving Hand Vector SVG -->
+                                <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="75" cy="75" r="70" stroke="currentColor" stroke-width="4" stroke-dasharray="4 4" fill="transparent"/>
+                                    <!-- Body -->
+                                    <path d="M45 150 C45 110, 105 110, 105 150" stroke="currentColor" stroke-width="4" fill="var(--btn-bg)"/>
+                                    <!-- Neck -->
+                                    <rect x="70" y="95" width="10" height="15" rx="3" fill="currentColor" stroke="currentColor" stroke-width="2"/>
+                                    <!-- Head -->
+                                    <circle cx="75" cy="65" r="30" fill="var(--card-bg)" stroke="currentColor" stroke-width="4"/>
+                                    <!-- Hair -->
+                                    <path d="M45 65 C45 35, 105 35, 105 65 C95 55, 55 55, 45 65 Z" fill="currentColor"/>
+                                    <!-- Glasses -->
+                                    <circle cx="65" cy="65" r="8" stroke="currentColor" stroke-width="3" fill="transparent"/>
+                                    <circle cx="85" cy="65" r="8" stroke="currentColor" stroke-width="3" fill="transparent"/>
+                                    <line x1="73" y1="65" x2="77" y2="65" stroke="currentColor" stroke-width="3"/>
+                                    <line x1="57" y1="65" x2="48" y2="60" stroke="currentColor" stroke-width="2"/>
+                                    <line x1="93" y1="65" x2="102" y2="60" stroke="currentColor" stroke-width="2"/>
+                                    <!-- Face details -->
+                                    <path d="M71 80 Q75 83 79 80" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="transparent"/>
+                                    <!-- Waving Hand -->
+                                    <g class="waving-arm-svg">
+                                        <!-- Arm -->
+                                        <path d="M102 120 C115 100, 125 70, 120 50" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/>
+                                        <!-- Hand/Fingers -->
+                                        <path d="M115 50 C113 46, 116 43, 119 45 C121 41, 124 41, 125 45 C127 42, 130 43, 129 47 C131 46, 133 48, 131 52 C129 55, 125 58, 120 56" stroke="currentColor" stroke-width="3" fill="var(--card-bg)"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Current Focus Card (Middle Layout) -->
+                        <div class="card status-progress-card">
+                            <div class="status-left">
+                                <div class="status-icon-box">
+                                    <i class="fa-solid fa-laptop-code"></i>
+                                </div>
+                                <div class="status-details">
+                                    <h4>Data Analyst Intern</h4>
+                                    <p>Unified Mentor Pvt Ltd • 6 Months Complete</p>
+                                </div>
+                            </div>
+                            <div class="status-actions">
+                                <div class="status-circle-progress">
+                                    <svg class="circle-svg">
+                                        <circle class="circle-bg" cx="24" cy="24" r="20"/>
+                                        <circle class="circle-val" cx="24" cy="24" r="20" stroke-dasharray="125.6" stroke-dashoffset="0"/>
+                                    </svg>
+                                    <span class="circle-text">100%</span>
+                                </div>
+                                <button class="btn-arrow" onclick="switchTab('experience')" title="View details">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Key Focus Areas (Matching "Courses" Section) -->
+                        <div class="card">
+                            <div class="card-header-row">
+                                <h2 class="card-title">Technical Expertise</h2>
+                                <button class="btn-outline" onclick="switchTab('skills')">View All Skills</button>
+                            </div>
+                            
+                            <div class="dashboard-list-container">
+                                <!-- Python -->
+                                <div class="list-item">
+                                    <div class="list-item-left">
+                                        <div class="list-item-icon-box">
+                                            <i class="fa-brands fa-python"></i>
+                                        </div>
+                                        <div class="list-item-info">
+                                            <h4>Python Programming</h4>
+                                            <p>Data Wrangling, Pandas & NumPy</p>
+                                        </div>
+                                    </div>
+                                    <div class="list-item-meta">
+                                        <div class="meta-detail">
+                                            <i class="fa-regular fa-clock"></i>
+                                            <span>95% Mastery</span>
+                                        </div>
+                                        <div class="meta-detail">
+                                            <i class="fa-solid fa-star"></i>
+                                            <span>4.9</span>
+                                        </div>
+                                    </div>
+                                    <div class="list-item-action">
+                                        <button class="btn-black" onclick="switchTab('skills')">View Details</button>
+                                    </div>
+                                </div>
+
+                                <!-- SQL -->
+                                <div class="list-item">
+                                    <div class="list-item-left">
+                                        <div class="list-item-icon-box">
+                                            <i class="fa-solid fa-database"></i>
+                                        </div>
+                                        <div class="list-item-info">
+                                            <h4>SQL Databases</h4>
+                                            <p>Relational Databases & Analytical Queries</p>
+                                        </div>
+                                    </div>
+                                    <div class="list-item-meta">
+                                        <div class="meta-detail">
+                                            <i class="fa-regular fa-clock"></i>
+                                            <span>90% Mastery</span>
+                                        </div>
+                                        <div class="meta-detail">
+                                            <i class="fa-solid fa-star"></i>
+                                            <span>4.8</span>
+                                        </div>
+                                    </div>
+                                    <div class="list-item-action">
+                                        <button class="btn-black" onclick="switchTab('skills')">View Details</button>
+                                    </div>
+                                </div>
+
+                                <!-- Machine Learning -->
+                                <div class="list-item">
+                                    <div class="list-item-left">
+                                        <div class="list-item-icon-box">
+                                            <i class="fa-solid fa-brain"></i>
+                                        </div>
+                                        <div class="list-item-info">
+                                            <h4>Machine Learning</h4>
+                                            <p>Predictive Modeling & Scikit-learn</p>
+                                        </div>
+                                    </div>
+                                    <div class="list-item-meta">
+                                        <div class="meta-detail">
+                                            <i class="fa-regular fa-clock"></i>
+                                            <span>92% Mastery</span>
+                                        </div>
+                                        <div class="meta-detail">
+                                            <i class="fa-solid fa-star"></i>
+                                            <span>4.9</span>
+                                        </div>
+                                    </div>
+                                    <div class="list-item-action">
+                                        <button class="btn-black" onclick="switchTab('skills')">View Details</button>
+                                    </div>
+                                </div>
+
+                                <!-- Data Visualization -->
+                                <div class="list-item">
+                                    <div class="list-item-left">
+                                        <div class="list-item-icon-box">
+                                            <i class="fa-solid fa-chart-line"></i>
+                                        </div>
+                                        <div class="list-item-info">
+                                            <h4>Data Visualization</h4>
+                                            <p>Power BI, Tableau, Matplotlib & Seaborn</p>
+                                        </div>
+                                    </div>
+                                    <div class="list-item-meta">
+                                        <div class="meta-detail">
+                                            <i class="fa-regular fa-clock"></i>
+                                            <span>88% Mastery</span>
+                                        </div>
+                                        <div class="meta-detail">
+                                            <i class="fa-solid fa-star"></i>
+                                            <span>4.7</span>
+                                        </div>
+                                    </div>
+                                    <div class="list-item-action">
+                                        <button class="btn-black" onclick="switchTab('skills')">View Details</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Grid Column -->
+                    <div class="overview-right">
+                        <!-- Top Mini Stats -->
+                        <div class="mini-stats-row">
+                            <div class="card mini-stats-card">
+                                <span class="mini-stats-number">12</span>
+                                <span class="mini-stats-label">Certificates<br>Earned</span>
+                            </div>
+                            <div class="card mini-stats-card">
+                                <span class="mini-stats-number">6m</span>
+                                <span class="mini-stats-label">Internship<br>Experience</span>
+                            </div>
+                        </div>
+
+                        <!-- Statistics (Chart) -->
+                        <div class="card">
+                            <div class="chart-stats-header">
+                                <h2 class="card-title">Skill Analytics</h2>
+                                <div class="chart-timeframe-dropdown">
+                                    <select id="timeframeSelect">
+                                        <option value="weekly">Weekly View</option>
+                                        <option value="monthly">Monthly View</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="chart-stats-header" style="margin-bottom: 20px;">
+                                <div class="chart-subtitles">
+                                    <span class="chart-subtitle-item active" id="learnHoursTab">Learning Commits</span>
+                                    <span class="chart-subtitle-item" id="myCoursesTab">Project Milestones</span>
+                                </div>
+                            </div>
+                            <div class="chart-canvas-container">
+                                <canvas id="statisticsChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Promotion / Call To Action (Brain Card) -->
+                        <div class="card promo-card">
+                            <div class="promo-info">
+                                <h3 class="promo-title">Open for Opportunities!</h3>
+                                <p class="promo-subtitle">Looking for Data Analyst / Data Scientist roles to apply ML and analytic strategies.</p>
+                                <button class="btn-black" onclick="switchTab('contact')">Hire Me Now</button>
+                            </div>
+                            <div class="promo-illustration">
+                                <!-- SVG Outline Brain reading book -->
+                                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Book -->
+                                    <path d="M10 75 Q30 70 50 75 Q70 70 90 75" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                                    <path d="M10 80 Q30 75 50 80 Q70 75 90 80" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                                    <line x1="50" y1="80" x2="50" y2="40" stroke="currentColor" stroke-width="3"/>
+                                    <!-- Brain halves -->
+                                    <path d="M50 40 C35 40, 25 30, 30 20 C35 10, 45 15, 50 25" stroke="currentColor" stroke-width="3" fill="var(--progress-track)"/>
+                                    <path d="M50 40 C65 40, 75 30, 70 20 C65 10, 55 15, 50 25" stroke="currentColor" stroke-width="3" fill="var(--progress-track)"/>
+                                    <path d="M30 20 C25 22, 22 15, 30 13 Q35 11 40 16" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M70 20 C75 22, 78 15, 70 13 Q65 11 60 16" stroke="currentColor" stroke-width="2"/>
+                                    <!-- Lightbulb lines -->
+                                    <line x1="50" y1="12" x2="50" y2="4" stroke="currentColor" stroke-width="2"/>
+                                    <line x1="42" y1="14" x2="36" y2="8" stroke="currentColor" stroke-width="2"/>
+                                    <line x1="58" y1="14" x2="64" y2="8" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ================= SKILLS TAB ================= -->
+            <div id="skills" class="tab-content">
+                <div class="card">
+                    <div class="card-header-row">
+                        <h2 class="card-title">Professional Skills</h2>
+                        <p class="greeting-subtitle">Self-assessed technology expertise and hands-on tools proficiency.</p>
+                    </div>
+
+                    <div class="skills-grid-container">
+                        <!-- Programming Languages -->
+                        <div class="skills-category-card">
+                            <h3 class="skills-category-header">
+                                <i class="fa-solid fa-code"></i> Programming Languages
+                            </h3>
+                            <div class="skills-list">
+                                <div class="skill-progress-item">
+                                    <div class="skill-name-row">
+                                        <span>Python</span>
+                                        <span class="skill-percentage">95%</span>
+                                    </div>
+                                    <div class="skill-bar-track">
+                                        <div class="skill-bar-fill" data-level="95%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-progress-item">
+                                    <div class="skill-name-row">
+                                        <span>SQL</span>
+                                        <span class="skill-percentage">90%</span>
+                                    </div>
+                                    <div class="skill-bar-track">
+                                        <div class="skill-bar-fill" data-level="90%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-progress-item">
+                                    <div class="skill-name-row">
+                                        <span>R Programming</span>
+                                        <span class="skill-percentage">85%</span>
+                                    </div>
+                                    <div class="skill-bar-track">
+                                        <div class="skill-bar-fill" data-level="85%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Data Science & ML -->
+                        <div class="skills-category-card">
+                            <h3 class="skills-category-header">
+                                <i class="fa-solid fa-brain"></i> Data Science & Machine Learning
+                            </h3>
+                            <div class="skills-list">
+                                <div class="skill-progress-item">
+                                    <div class="skill-name-row">
+                                        <span>Predictive ML Modeling</span>
+                                        <span class="skill-percentage">92%</span>
+                                    </div>
+                                    <div class="skill-bar-track">
+                                        <div class="skill-bar-fill" data-level="92%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-progress-item">
+                                    <div class="skill-name-row">
+                                        <span>Statistical Data Analysis</span>
+                                        <span class="skill-percentage">90%</span>
+                                    </div>
+                                    <div class="skill-bar-track">
+                                        <div class="skill-bar-fill" data-level="90%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-progress-item">
+                                    <div class="skill-name-row">
+                                        <span>Data Visualization</span>
+                                        <span class="skill-percentage">88%</span>
+                                    </div>
+                                    <div class="skill-bar-track">
+                                        <div class="skill-bar-fill" data-level="88%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tools & Technologies -->
+                        <div class="skills-category-card">
+                            <h3 class="skills-category-header">
+                                <i class="fa-solid fa-screwdriver-wrench"></i> Tools & Libraries
+                            </h3>
+                            <div class="skills-list">
+                                <div class="skill-progress-item">
+                                    <div class="skill-name-row">
+                                        <span>Git & GitHub Control</span>
+                                        <span class="skill-percentage">87%</span>
+                                    </div>
+                                    <div class="skill-bar-track">
+                                        <div class="skill-bar-fill" data-level="87%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-progress-item">
+                                    <div class="skill-name-row">
+                                        <span>Tableau BI Dashboarding</span>
+                                        <span class="skill-percentage">82%</span>
+                                    </div>
+                                    <div class="skill-bar-track">
+                                        <div class="skill-bar-fill" data-level="82%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-progress-item">
+                                    <div class="skill-name-row">
+                                        <span>Power BI Dashboarding</span>
+                                        <span class="skill-percentage">80%</span>
+                                    </div>
+                                    <div class="skill-bar-track">
+                                        <div class="skill-bar-fill" data-level="80%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-progress-item">
+                                    <div class="skill-name-row">
+                                        <span>Pandas & NumPy Libraries</span>
+                                        <span class="skill-percentage">94%</span>
+                                    </div>
+                                    <div class="skill-bar-track">
+                                        <div class="skill-bar-fill" data-level="94%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-progress-item">
+                                    <div class="skill-name-row">
+                                        <span>Scikit-learn (ML modeling)</span>
+                                        <span class="skill-percentage">90%</span>
+                                    </div>
+                                    <div class="skill-bar-track">
+                                        <div class="skill-bar-fill" data-level="90%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= EDUCATION TAB ================= -->
+            <div id="education" class="tab-content">
+                <div class="education-grid">
+                    <!-- B.Tech Card -->
+                    <div class="card education-card">
+                        <div class="education-card-header">
+                            <div class="education-title-group">
+                                <h3>B.Tech - Computer Science (Data Science)</h3>
+                                <p class="education-institution">Sreyas Institute of Science and Technology, TG</p>
+                            </div>
+                            <span class="education-badge">2022 - 2026</span>
+                        </div>
+                        <div class="education-meta">
+                            <div class="education-meta-item">
+                                <i class="fa-solid fa-chart-simple"></i>
+                                <span>CGPA: 7.4</span>
+                            </div>
+                            <div class="education-meta-item">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>Hyderabad, TG</span>
+                            </div>
+                        </div>
+                        <div class="education-skills">
+                            <h4>Key Learnings & Focus:</h4>
+                            <div class="education-skill-tags">
+                                <span>Machine Learning</span>
+                                <span>Data Analytics</span>
+                                <span>Python</span>
+                                <span>SQL</span>
+                                <span>Data Visualization</span>
+                                <span>Statistics</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Intermediate Card -->
+                    <div class="card education-card">
+                        <div class="education-card-header">
+                            <div class="education-title-group">
+                                <h3>Intermediate (12th Grade) - Science (MPC)</h3>
+                                <p class="education-institution">Narayana Junior College</p>
+                            </div>
+                            <span class="education-badge">2020 - 2022</span>
+                        </div>
+                        <div class="education-meta">
+                            <div class="education-meta-item">
+                                <i class="fa-solid fa-chart-simple"></i>
+                                <span>Grade: B (60-75%)</span>
+                            </div>
+                            <div class="education-meta-item">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>Hyderabad, TG</span>
+                            </div>
+                        </div>
+                        <div class="education-skills">
+                            <h4>Key Focus Areas:</h4>
+                            <div class="education-skill-tags">
+                                <span>Mathematics</span>
+                                <span>Physics</span>
+                                <span>Chemistry</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 10th Grade Card -->
+                    <div class="card education-card">
+                        <div class="education-card-header">
+                            <div class="education-title-group">
+                                <h3>Secondary School Certificate (10th Grade)</h3>
+                                <p class="education-institution">St. Joseph's High School</p>
+                            </div>
+                            <span class="education-badge">2019 - 2020</span>
+                        </div>
+                        <div class="education-meta">
+                            <div class="education-meta-item">
+                                <i class="fa-solid fa-percent"></i>
+                                <span>Percentage: 93%</span>
+                            </div>
+                            <div class="education-meta-item">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>Hyderabad, TG</span>
+                            </div>
+                        </div>
+                        <div class="education-skills">
+                            <h4>Foundation Subjects:</h4>
+                            <div class="education-skill-tags">
+                                <span>Science Fundamentals</span>
+                                <span>Mathematics</span>
+                                <span>General Knowledge</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= EXPERIENCE TAB ================= -->
+            <div id="experience" class="tab-content">
+                <div class="experience-layout">
+                    
+                    <!-- Left: Details & Responsibilities -->
+                    <div class="experience-left-panel">
+                        <div class="card">
+                            <div class="experience-job-header">
+                                <div class="company-branding">
+                                    <div class="company-logo-box">
+                                        <i class="fa-solid fa-chart-pie"></i>
+                                    </div>
+                                    <div class="job-titles">
+                                        <h3>Data Analyst Intern</h3>
+                                        <h4>Unified Mentor Pvt Ltd</h4>
+                                    </div>
+                                </div>
+                                <div class="job-time-badge">
+                                    <span class="job-date-range">Aug 2025 - Feb 2026</span>
+                                    <span class="job-duration">6 Months</span>
+                                </div>
+                            </div>
+                            
+                            <div class="job-details-grid" style="margin-top: 24px;">
+                                <div class="job-detail-block">
+                                    <h4 class="job-block-title"><i class="fa-solid fa-clipboard-list"></i> Key Responsibilities</h4>
+                                    <ul>
+                                        <li>Execute comprehensive data analysis and predictive modeling using ML algorithms.</li>
+                                        <li>Create interactive dashboards using Power BI and Tableau for decision support.</li>
+                                        <li>Preprocess, clean, and wrangle complex multi-format datasets.</li>
+                                        <li>Build actionable data pipelines to support business intelligence reports.</li>
+                                    </ul>
+                                </div>
+                                <div class="job-detail-block">
+                                    <h4 class="job-block-title"><i class="fa-solid fa-medal"></i> Achievements</h4>
+                                    <ul>
+                                        <li>Delivered key actionable business insights to executive coordinators.</li>
+                                        <li>Successfully built and validated predictive machine learning algorithms locally.</li>
+                                        <li>Acquired high praise for hard work, consistency, and analytical logic.</li>
+                                        <li>Structured visual report models showing 15% better insight clarity.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feedback Box -->
+                        <div class="card">
+                            <h3 class="card-title" style="margin-bottom: 18px;"><i class="fa-regular fa-comment-dots"></i> Employer Feedback</h3>
+                            <div class="job-feedback-quote">
+                                "We found him/her consistent & hard-working. Successfully completed six months internship as Data Analyst Intern. We wish them all the best for their future endeavors."
+                            </div>
+                            <div class="job-feedback-author">
+                                — Official Internship Statement, Unified Mentor Pvt Ltd
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Official Documents Panel -->
+                    <div class="experience-right-panel">
+                        <div class="card document-pill-card">
+                            <h4><i class="fa-solid fa-folder-open"></i> Verified Documents</h4>
+                            <p class="greeting-subtitle" style="font-size:12px;">Official documents confirming the completion of the 6-month internship.</p>
+                            
+                            <div class="doc-download-list">
+                                <!-- Internship Certificate -->
+                                <div class="doc-download-item">
+                                    <div class="doc-info">
+                                        <i class="fa-solid fa-file-pdf doc-icon"></i>
+                                        <div class="doc-meta">
+                                            <div class="doc-name">Internship Certificate</div>
+                                            <span style="font-size: 10px; color: var(--text-secondary);">Aug 2025 - Feb 2026</span>
+                                        </div>
+                                    </div>
+                                    <a href="Certificate.pdf" target="_blank" class="doc-btn-link" title="Open PDF">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                </div>
+
+                                <!-- Offer Letter -->
+                                <div class="doc-download-item">
+                                    <div class="doc-info">
+                                        <i class="fa-solid fa-file-pdf doc-icon"></i>
+                                        <div class="doc-meta">
+                                            <div class="doc-name">Internship Offer Letter</div>
+                                            <span style="font-size: 10px; color: var(--text-secondary);">Issued: Aug 2025</span>
+                                        </div>
+                                    </div>
+                                    <a href="offerletter.pdf" target="_blank" class="doc-btn-link" title="Open PDF">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ================= CERTIFICATES TAB ================= -->
+            <div id="certificates" class="tab-content">
+                <div class="card" style="margin-bottom: 24px;">
+                    <div class="card-header-row" style="margin-bottom: 16px;">
+                        <h2 class="card-title">Certifications & Simulation Credentials</h2>
+                        <p class="greeting-subtitle" style="margin:0;">Interactive grid of verified professional achievements.</p>
+                    </div>
+                    
+                    <div class="category-filter-row" id="certFilters">
+                        <button class="filter-pill active" data-filter="all">All Certificates</button>
+                        <button class="filter-pill" data-filter="data-science">Data Science</button>
+                        <button class="filter-pill" data-filter="internship">Internship</button>
+                        <button class="filter-pill" data-filter="programming">Programming</button>
+                        <button class="filter-pill" data-filter="tools">Tools & Sim</button>
+                        <button class="filter-pill" data-filter="webinar">Workshops & Webinars</button>
+                    </div>
+                </div>
+
+                <div class="certificates-grid-container" id="certGrid">
+                    <!-- Cert 1 -->
+                    <div class="card certificate-card" data-category="internship">
+                        <div class="certificate-top">
+                            <div class="certificate-badge-row">
+                                <span class="cert-category-badge">Internship</span>
+                                <i class="fa-solid fa-briefcase cert-main-icon"></i>
+                            </div>
+                            <h3 class="certificate-title">Data Analyst Intern</h3>
+                            <p class="certificate-issuer">Unified Mentor Pvt Ltd</p>
+                        </div>
+                        <div class="certificate-bottom">
+                            <div class="certificate-date-duration">
+                                <span><i class="fa-regular fa-calendar"></i> Aug 2025 - Feb 2026</span>
+                                <span><i class="fa-regular fa-clock"></i> 6 Months</span>
+                            </div>
+                            <div class="certificate-skills-row">
+                                <span>Data Analysis</span>
+                                <span>Python</span>
+                                <span>SQL</span>
+                                <span>Tableau</span>
+                            </div>
+                            <div class="certificate-actions-row">
+                                <a href="Certificate.pdf" target="_blank">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cert 2 -->
+                    <div class="card certificate-card" data-category="tools">
+                        <div class="certificate-top">
+                            <div class="certificate-badge-row">
+                                <span class="cert-category-badge">Tools & Sim</span>
+                                <i class="fa-solid fa-chart-column cert-main-icon"></i>
+                            </div>
+                            <h3 class="certificate-title">Power BI Job Simulation</h3>
+                            <p class="certificate-issuer">PwC • Forage</p>
+                        </div>
+                        <div class="certificate-bottom">
+                            <div class="certificate-date-duration">
+                                <span><i class="fa-regular fa-calendar"></i> Jan 2024</span>
+                                <span><i class="fa-regular fa-clock"></i> Simulation</span>
+                            </div>
+                            <div class="certificate-skills-row">
+                                <span>Power BI</span>
+                                <span>Data Visualization</span>
+                                <span>Analysis</span>
+                            </div>
+                            <div class="certificate-actions-row">
+                                <a href="pwcpbi.pdf" target="_blank">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cert 3 -->
+                    <div class="card certificate-card" data-category="tools">
+                        <div class="certificate-top">
+                            <div class="certificate-badge-row">
+                                <span class="cert-category-badge">Tools & Sim</span>
+                                <i class="fa-solid fa-project-diagram cert-main-icon"></i>
+                            </div>
+                            <h3 class="certificate-title">Agile Methodology Job Simulation</h3>
+                            <p class="certificate-issuer">Cognizant • Forage</p>
+                        </div>
+                        <div class="certificate-bottom">
+                            <div class="certificate-date-duration">
+                                <span><i class="fa-regular fa-calendar"></i> Jan 2024</span>
+                                <span><i class="fa-regular fa-clock"></i> Simulation</span>
+                            </div>
+                            <div class="certificate-skills-row">
+                                <span>Agile Scrum</span>
+                                <span>Management</span>
+                            </div>
+                            <div class="certificate-actions-row">
+                                <a href="cognizant agile.pdf" target="_blank">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cert 4 -->
+                    <div class="card certificate-card" data-category="programming">
+                        <div class="certificate-top">
+                            <div class="certificate-badge-row">
+                                <span class="cert-category-badge">Programming</span>
+                                <i class="fa-brands fa-python cert-main-icon"></i>
+                            </div>
+                            <h3 class="certificate-title">Python for Data Science</h3>
+                            <p class="certificate-issuer">Great Learning Academy</p>
+                        </div>
+                        <div class="certificate-bottom">
+                            <div class="certificate-date-duration">
+                                <span><i class="fa-regular fa-calendar"></i> July 2023</span>
+                                <span><i class="fa-regular fa-clock"></i> Course</span>
+                            </div>
+                            <div class="certificate-skills-row">
+                                <span>Python</span>
+                                <span>Data Science</span>
+                            </div>
+                            <div class="certificate-actions-row">
+                                <a href="Pythong8.pdf" target="_blank">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cert 5 -->
+                    <div class="card certificate-card" data-category="programming">
+                        <div class="certificate-top">
+                            <div class="certificate-badge-row">
+                                <span class="cert-category-badge">Programming</span>
+                                <i class="fa-solid fa-copyright cert-main-icon"></i>
+                            </div>
+                            <h3 class="certificate-title">C for Beginners</h3>
+                            <p class="certificate-issuer">Great Learning Academy</p>
+                        </div>
+                        <div class="certificate-bottom">
+                            <div class="certificate-date-duration">
+                                <span><i class="fa-regular fa-calendar"></i> July 2023</span>
+                                <span><i class="fa-regular fa-clock"></i> Course</span>
+                            </div>
+                            <div class="certificate-skills-row">
+                                <span>C Basics</span>
+                                <span>Coding Logic</span>
+                            </div>
+                            <div class="certificate-actions-row">
+                                <a href="Cg8.pdf" target="_blank">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cert 6 -->
+                    <div class="card certificate-card" data-category="programming">
+                        <div class="certificate-top">
+                            <div class="certificate-badge-row">
+                                <span class="cert-category-badge">Programming</span>
+                                <i class="fa-solid fa-code cert-main-icon"></i>
+                            </div>
+                            <h3 class="certificate-title">Learn C Programming</h3>
+                            <p class="certificate-issuer">CodeChef</p>
+                        </div>
+                        <div class="certificate-bottom">
+                            <div class="certificate-date-duration">
+                                <span><i class="fa-regular fa-calendar"></i> July 2023</span>
+                                <span><i class="fa-regular fa-clock"></i> Complete Course</span>
+                            </div>
+                            <div class="certificate-skills-row">
+                                <span>C Programming</span>
+                                <span>Algorithms</span>
+                            </div>
+                            <div class="certificate-actions-row">
+                                <a href="CCodechef.pdf" target="_blank">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cert 7 -->
+                    <div class="card certificate-card" data-category="tools">
+                        <div class="certificate-top">
+                            <div class="certificate-badge-row">
+                                <span class="cert-category-badge">Tools & Sim</span>
+                                <i class="fa-solid fa-robot cert-main-icon"></i>
+                            </div>
+                            <h3 class="certificate-title">ChatGPT for Beginners</h3>
+                            <p class="certificate-issuer">Great Learning Academy</p>
+                        </div>
+                        <div class="certificate-bottom">
+                            <div class="certificate-date-duration">
+                                <span><i class="fa-regular fa-calendar"></i> Jan 2024</span>
+                                <span><i class="fa-regular fa-clock"></i> Course</span>
+                            </div>
+                            <div class="certificate-skills-row">
+                                <span>ChatGPT</span>
+                                <span>Prompting</span>
+                                <span>AI Productivity</span>
+                            </div>
+                            <div class="certificate-actions-row">
+                                <a href="chatgptg8.pdf" target="_blank">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cert 8 -->
+                    <div class="card certificate-card" data-category="tools">
+                        <div class="certificate-top">
+                            <div class="certificate-badge-row">
+                                <span class="cert-category-badge">Tools & Sim</span>
+                                <i class="fa-solid fa-magnifying-glass-chart cert-main-icon"></i>
+                            </div>
+                            <h3 class="certificate-title">SEO for Beginners</h3>
+                            <p class="certificate-issuer">Great Learning Academy</p>
+                        </div>
+                        <div class="certificate-bottom">
+                            <div class="certificate-date-duration">
+                                <span><i class="fa-regular fa-calendar"></i> Jan 2024</span>
+                                <span><i class="fa-regular fa-clock"></i> Live Session</span>
+                            </div>
+                            <div class="certificate-skills-row">
+                                <span>SEO Systems</span>
+                                <span>Web Analytics</span>
+                            </div>
+                            <div class="certificate-actions-row">
+                                <a href="seog8.pdf" target="_blank">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cert 9 -->
+                    <div class="card certificate-card" data-category="webinar">
+                        <div class="certificate-top">
+                            <div class="certificate-badge-row">
+                                <span class="cert-category-badge">Workshops</span>
+                                <i class="fa-solid fa-bolt-lightning cert-main-icon"></i>
+                            </div>
+                            <h3 class="certificate-title">AI Tools Workshop</h3>
+                            <p class="certificate-issuer">B10X</p>
+                        </div>
+                        <div class="certificate-bottom">
+                            <div class="certificate-date-duration">
+                                <span><i class="fa-regular fa-calendar"></i> Jan 14, 2024</span>
+                                <span><i class="fa-regular fa-clock"></i> 1-Day Intensive</span>
+                            </div>
+                            <div class="certificate-skills-row">
+                                <span>AI Workflows</span>
+                                <span>Tools Suite</span>
+                            </div>
+                            <div class="certificate-actions-row">
+                                <a href="b10x ai.pdf" target="_blank">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cert 10 -->
+                    <div class="card certificate-card" data-category="webinar">
+                        <div class="certificate-top">
+                            <div class="certificate-badge-row">
+                                <span class="cert-category-badge">Webinars</span>
+                                <i class="fa-solid fa-users-gear cert-main-icon"></i>
+                            </div>
+                            <h3 class="certificate-title">Career Guidance Session</h3>
+                            <p class="certificate-issuer">Grad Guru Innovation</p>
+                        </div>
+                        <div class="certificate-bottom">
+                            <div class="certificate-date-duration">
+                                <span><i class="fa-regular fa-calendar"></i> Dec 07, 2025</span>
+                                <span><i class="fa-regular fa-clock"></i> ISO Certified Session</span>
+                            </div>
+                            <div class="certificate-skills-row">
+                                <span>Professional Development</span>
+                            </div>
+                            <div class="certificate-actions-row">
+                                <a href="Medichetti_Likith_certificate.pdf" target="_blank">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cert 11 -->
+                    <div class="card certificate-card" data-category="webinar">
+                        <div class="certificate-top">
+                            <div class="certificate-badge-row">
+                                <span class="cert-category-badge">Workshops</span>
+                                <i class="fa-solid fa-microchip cert-main-icon"></i>
+                            </div>
+                            <h3 class="certificate-title">Build AI Agents with UiPath</h3>
+                            <p class="certificate-issuer">GeeksforGeeks • UiPath</p>
+                        </div>
+                        <div class="certificate-bottom">
+                            <div class="certificate-date-duration">
+                                <span><i class="fa-regular fa-calendar"></i> Workshop</span>
+                                <span><i class="fa-regular fa-clock"></i> Live Learning</span>
+                            </div>
+                            <div class="certificate-skills-row">
+                                <span>UiPath RPA</span>
+                                <span>AI Agents</span>
+                                <span>Automation</span>
+                            </div>
+                            <div class="certificate-actions-row">
+                                <a href="image.png" target="_blank">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cert 12 -->
+                    <div class="card certificate-card" data-category="data-science">
+                        <div class="certificate-top">
+                            <div class="certificate-badge-row">
+                                <span class="cert-category-badge">Data Science</span>
+                                <i class="fa-solid fa-brain cert-main-icon"></i>
+                            </div>
+                            <h3 class="certificate-title">DS Project-Based Learning</h3>
+                            <p class="certificate-issuer">GeeksforGeeks</p>
+                        </div>
+                        <div class="certificate-bottom">
+                            <div class="certificate-date-duration">
+                                <span><i class="fa-regular fa-calendar"></i> Course</span>
+                                <span><i class="fa-regular fa-clock"></i> Project-Based</span>
+                            </div>
+                            <div class="certificate-skills-row">
+                                <span>Data Science</span>
+                                <span>ML Models</span>
+                                <span>Project Deployments</span>
+                            </div>
+                            <div class="certificate-actions-row">
+                                <a href="76cf87553cdbfc24c36a4b926ecd4b58.pdf" target="_blank">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= CONTACT TAB ================= -->
+            <div id="contact" class="tab-content">
+                <div class="contact-grid">
+                    
+                    <!-- Left: Contact Methods & Socials -->
+                    <div class="contact-left-col">
+                        <!-- Direct Email Card -->
+                        <div class="card contact-card-box">
+                            <div class="contact-card-icon-box">
+                                <i class="fa-regular fa-envelope"></i>
+                            </div>
+                            <div class="contact-card-info">
+                                <h3>Direct Email</h3>
+                                <p>Feel free to send proposals and queries directly.</p>
+                                <div class="contact-card-link-row">
+                                    <a href="mailto:medichettilikith@gmail.com" class="contact-link-tag">medichettilikith@gmail.com</a>
+                                    <button class="btn-copy" onclick="copyText('medichettilikith@gmail.com')">Copy</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Direct Phone Card -->
+                        <div class="card contact-card-box">
+                            <div class="contact-card-icon-box">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div class="contact-card-info">
+                                <h3>Phone & WhatsApp</h3>
+                                <p>Available for calls or messages regarding roles.</p>
+                                <div class="contact-card-link-row">
+                                    <a href="tel:+918885471597" class="contact-link-tag">+91 8885471597</a>
+                                    <button class="btn-copy" onclick="copyText('+918885471597')">Copy</button>
+                                </div>
+                                <div style="margin-top: 10px;">
+                                    <a href="https://wa.me/918885471597" target="_blank" class="btn-outline" style="padding: 6px 14px; font-size: 12px;">
+                                        <i class="fa-brands fa-whatsapp"></i> WhatsApp Me
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Profiles Card -->
+                        <div class="card social-links-card">
+                            <h3>Professional Connections</h3>
+                            <div class="social-buttons-grid">
+                                <a href="https://www.linkedin.com/in/medichetti-likith/" target="_blank" class="social-btn">
+                                    <i class="fa-brands fa-linkedin"></i> LinkedIn
+                                </a>
+                                <a href="https://github.com/MedichettiLikith" target="_blank" class="social-btn">
+                                    <i class="fa-brands fa-github"></i> GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Contact Form -->
+                    <div class="contact-right-col">
+                        <div class="card">
+                            <h3 class="card-title" style="margin-bottom: 24px;"><i class="fa-regular fa-paper-plane"></i> Send a Message</h3>
+                            
+                            <form id="contactForm">
+                                <div class="form-group-row">
+                                    <div class="form-group">
+                                        <label for="formName"><i class="fa-regular fa-user"></i> Full Name</label>
+                                        <input type="text" id="formName" class="form-input-element" placeholder="Your name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="formEmail"><i class="fa-regular fa-envelope"></i> Email Address</label>
+                                        <input type="email" id="formEmail" class="form-input-element" placeholder="yourname@domain.com" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="formSubject"><i class="fa-solid fa-tag"></i> Subject</label>
+                                    <input type="text" id="formSubject" class="form-input-element" placeholder="What's this regarding?" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="formMessage"><i class="fa-regular fa-comment"></i> Your Message</label>
+                                    <textarea id="formMessage" rows="5" class="form-input-element" placeholder="Write your message details..." required></textarea>
+                                </div>
+
+                                <div class="form-footer-row">
+                                    <button type="submit" class="btn-black">Send Message <i class="fa-regular fa-paper-plane"></i></button>
+                                    <div class="form-status-info">
+                                        <i class="fa-solid fa-circle-info"></i>
+                                        <span>I typically respond within 24 hours.</span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Success Toast Popup -->
+    <div class="toast-notification" id="toast">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toastMessage">Success Notification!</span>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
